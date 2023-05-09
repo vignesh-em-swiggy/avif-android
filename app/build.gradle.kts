@@ -41,6 +41,10 @@ android {
 
 dependencies {
 
+    implementation ("com.github.bumptech.glide:glide:4.14.2")
+    kapt ("com.github.bumptech.glide:compiler:4.14.2")
+    implementation ("com.github.bumptech.glide:avif-integration:4.14.2")
+
     implementation("androidx.core:core-ktx:1.10.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
