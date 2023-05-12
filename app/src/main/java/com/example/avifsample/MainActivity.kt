@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.request.RequestOptions
 import com.example.avifsample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,12 +21,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadImage(imageView: ImageView, formatParam: String) {
-        Glide.with(this).load(buildImageUrl(formatParam)).centerCrop()
+        Glide.with(this).load(buildImageUrl(formatParam)).centerInside().apply(getRequestOptions())
             .placeholder(R.drawable.ic_launcher_foreground).into(imageView)
     }
 
+    private fun getRequestOptions() = RequestOptions()
+        .format(DecodeFormat.PREFER_RGB_565)
+        .disallowHardwareConfig()
+
+    // food bb icon https://res.cloudinary.com/swiggy/image/upload/c_fit,fl_lossy,f_webp,q_auto:eco/rng/md/carousel/production/z5kgwcyecjebueopxcbs
+    // food nav tile https://res.cloudinary.com/swiggy/image/upload/c_fill,fl_lossy,f_webp,q_auto:eco,h_231,w_189/rng/md/carousel/production/uycdjcbljscpflwcjeob
     private fun buildImageUrl(formatParam: String) =
-        "https://res.cloudinary.com/swiggy/image/upload/c_fill,$formatParam,q_auto,h_375,w_302/v1674029842/PC_Creative%20refresh/3D_bau/banners_new/Vada.png".also {
+        "https://res.cloudinary.com/swiggy/image/upload/c_fit,fl_lossy,$formatParam,q_auto:eco/rng/md/carousel/production/z5kgwcyecjebueopxcbs".also {
             Log.d(TAG, "buildImageUrl: $it")
         }
 }
