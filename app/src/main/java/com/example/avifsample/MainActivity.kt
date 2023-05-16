@@ -29,8 +29,8 @@ class MainActivity : AppCompatActivity() {
         .format(DecodeFormat.PREFER_RGB_565)
         .disallowHardwareConfig()
 
-    // food bb icon https://res.cloudinary.com/swiggy/image/upload/f_webp/rng/md/carousel/production/z5kgwcyecjebueopxcbs
-    // food nav tile https://res.cloudinary.com/swiggy/image/upload/f_webp/rng/md/carousel/production/uycdjcbljscpflwcjeob
+    // food bb icon https://res.cloudinary.com/swiggy/image/upload/$formatParam/rng/md/carousel/production/z5kgwcyecjebueopxcbs
+    // food nav tile https://res.cloudinary.com/swiggy/image/upload/$formatParam/rng/md/carousel/production/uycdjcbljscpflwcjeob
     private fun buildImageUrl(formatParam: String) =
         "https://res.cloudinary.com/swiggy/image/upload/$formatParam/rng/md/carousel/production/uycdjcbljscpflwcjeob".also {
             Log.d(TAG, "buildImageUrl: $it")
