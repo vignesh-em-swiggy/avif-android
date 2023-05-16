@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadImage(imageView: ImageView, formatParam: String) {
-        Glide.with(this).load(buildImageUrl(formatParam)).centerInside().apply(getRequestOptions())
+        Glide.with(this).load(buildImageUrl(formatParam)).centerInside()
             .placeholder(R.drawable.ic_launcher_foreground).into(imageView)
     }
 
