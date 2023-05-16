@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AVIF Sample</string>
+    <string name="load">Load</string>
+    <string name="cloudinary_image_id">Cloudinary Image Id</string>
 </resources>

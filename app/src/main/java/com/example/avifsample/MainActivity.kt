@@ -16,12 +16,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        loadImage(binding.avifImage, "f_avif")
-        loadImage(binding.webpImage, "f_webp")
+        setupLoadClickListener()
     }
 
-    private fun loadImage(imageView: ImageView, formatParam: String) {
-        Glide.with(this).load(buildImageUrl(formatParam)).centerInside()
+    private fun setupLoadClickListener() {
+        binding.loadButton.setOnClickListener {
+            val imageId = binding.urlEditText.text.trim().toString()
+            loadImage(binding.webpImage, "f_webp", imageId)
+            loadImage(binding.avifImage, "f_avif", imageId)
+        }
+    }
+
+    private fun loadImage(imageView: ImageView, formatParam: String, imageId: String) {
+        Glide.with(this).load(buildImageUrl(formatParam, imageId)).centerInside()
             .placeholder(R.drawable.ic_launcher_foreground).into(imageView)
     }
 
@@ -31,8 +38,8 @@ class MainActivity : AppCompatActivity() {
 
     // food bb icon https://res.cloudinary.com/swiggy/image/upload/$formatParam/rng/md/carousel/production/z5kgwcyecjebueopxcbs
     // food nav tile https://res.cloudinary.com/swiggy/image/upload/$formatParam/rng/md/carousel/production/uycdjcbljscpflwcjeob
-    private fun buildImageUrl(formatParam: String) =
-        "https://res.cloudinary.com/swiggy/image/upload/$formatParam/rng/md/carousel/production/uycdjcbljscpflwcjeob".also {
+    private fun buildImageUrl(formatParam: String, imageId: String) =
+        "https://res.cloudinary.com/swiggy/image/upload/$formatParam/$imageId".also {
             Log.d(TAG, "buildImageUrl: $it")
         }
 }
